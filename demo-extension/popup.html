@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ID.me Demo Browser Extension</title>
+  <style></style>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>ID.me Demo Generator</h1>
+
+  <p id='extensionStatus'></p>
+
+  <div class='select-container'>
+    <label for='policySelect'>Policy:</label>
+    <select name='policySelect' id='policySelect'>
+      <option value='login' default>NIST IAL1/AAL1 (Social Login)</option>
+      <option value='http://idmanagement.gov/ns/assurance/ial/1/aal/2' >NIST IAL1/AAL2 (Login + MFA)</option>
+      <option value='http://idmanagement.gov/ns/assurance/ial/2/aal/2' >NIST IAL2/AAL2 + Liveness</option>
+      <option value='kba_replacement' >KBA Replacement</option>
+      <option value='kba_replacement/liveness' >KBA Replacement + Liveness</option>
+      <option value='age' >Age</option>
+      <option value='alumni' >Alumni</option>
+      <option value='employee' >Employee</option>
+      <option value='responder' >First Responder</option>
+      <option value='government' >Government</option>
+      <option value='medical' >Medical</option>
+      <option value='military' >Military</option>
+      <option value='nurse' >Nurse</option>
+      <option value='student' >Student</option>
+      <option value='teacher' >Teacher</option>
+      <option value='custom' >Custom</option>
+    </select>
+  </div>
+
+  <div id='customPolicyContainer' class='select-container' hidden >
+    <label for='customPolicyInput'>Custom policy:</label>
+    <input type='text' name='customPolicyInput' id='customPolicyInput' />
+  </div>
+
+  <div class='select-container'>
+    <label for='positionSelect'>Button position:</label>
+    <select name='positionSelect' id='positionSelect'>
+      <option value='beforebegin' default>Above selected element</option>
+      <option value='afterend'>Below selected element</option>
+    </select>
+  </div>
+
+  <div class='select-container'>
+    <label for='buttonSelect'>Button type:</label>
+    <select name='buttonSelect' id='buttonSelect'>
+      <option value='signin' default>Sign in with ID.me</option>
+      <option value='verify' default>Verify with ID.me</option>
+    </select>
+  </div>
+
+  <div class='select-container'>
+    <label for='dividerSelect'>Divider type:</label>
+    <select name='dividerSelect' id='dividerSelect'>
+      <option value='orbreak' default>OR + Break</option>
+      <option value='break'>Break Only</option>
+      <option value='none'>None</option>
+    </select>
+  </div>
+
+  <div class='btn-container'>
+    <button type='button' id='toggleExtensionBtn'></button>
+  </div>
+
+  <script src='popup.js'></script>
+</body>
+</html>
