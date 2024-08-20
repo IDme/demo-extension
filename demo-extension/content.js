@@ -1,12 +1,13 @@
 function insertHtml(element) {
   if (element) {  
-    chrome.storage.local.get(['buttonPosition', 'buttonType', 'dividerType', 'policy', 'policyOverride'], function(result) {
+    chrome.storage.local.get(['buttonPosition', 'buttonType', 'dividerType', 'policy', 'policyOverride', 'customCopy'], function(result) {
       var dividerHTML = ''
       const position = result.buttonPosition
+      const copy = result.customCopy != `` ? `<p style="text-align: center;">${result.customCopy}</p>` : ``
 
       const demoAppLink = result.policy == 'custom' ? result.policyOverride : `https://aspriggs.idme.solutions/idme/sandbox/oauth/${result.policy}`
 
-      const imgLink = `<a href="${demoAppLink}">
+      const imgLink = `${copy}<a href="${demoAppLink}">
         <img style="max-height: 52px;margin: auto;display: block;" src="https://s3.amazonaws.com/idme/developer/idme-buttons/assets/img/${result.buttonType}.svg">
       </a>`
 

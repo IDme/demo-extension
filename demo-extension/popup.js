@@ -38,6 +38,16 @@ document.getElementById('customPolicyInput').addEventListener('input', () => {
   });
 });
 
+document.getElementById('customButtonCopy').addEventListener('input', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.storage.local.get(['customCopy'], function(result) {
+      chrome.storage.local.set({ customCopy: document.getElementById('customButtonCopy').value});
+    });
+    
+    chrome.tabs.reload(tabs[0].id);
+  });
+});
+
 document.getElementById('positionSelect').addEventListener('change', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.storage.local.get(['buttonPosition'], function(result) {
@@ -76,13 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
       'buttonType', 
       'dividerType', 
       'policy', 
-      'policyOverride'
+      'policyOverride',
+      'customCopy'
     ], function(result) {
 
       const buttonCopy = result.extensionEnabled ? 'Disable' : 'Enable'
 
       const policy = result.policy || 'login'
       const policyOverride = result.policyOverride || null
+      const customCopy = result.customCopy || ''
       const position = result.buttonPosition || 'beforebegin'
       const button = result.buttonType || 'signin'
       const divider = result.dividerType || 'orbreak'
@@ -92,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       document.getElementById('policySelect').value = policy;
       document.getElementById('customPolicyInput').value = policyOverride;
+      document.getElementById('customButtonCopy').value = customCopy;
       document.getElementById('positionSelect').value = position;
       document.getElementById('buttonSelect').value = button;
       document.getElementById('dividerSelect').value = divider;
